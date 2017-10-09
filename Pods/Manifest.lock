@@ -1,0 +1,18 @@
+PODS:
+  - Kingfisher (4.1.0)
+  - SwiftyJSON (3.1.4)
+  - VK-ios-sdk (1.4.6)
+
+DEPENDENCIES:
+  - Kingfisher
+  - SwiftyJSON
+  - VK-ios-sdk
+
+SPEC CHECKSUMS:
+  Kingfisher: f14df8cbe576bf55f211fa589e9869bceb4ea87d
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
+
+PODFILE CHECKSUM: f93b8ed464a67315a59aa737170b89b8e335d732
+
+COCOAPODS: 1.3.1
