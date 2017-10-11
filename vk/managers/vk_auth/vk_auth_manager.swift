@@ -18,7 +18,6 @@ class Vk_auth_manager: NSObject {
     
     
     func check_vk_auth(with delegate: AuthorizationDelegate, controller: UIViewController) {
-        
         sdkInstance = VKSdk.initialize(withAppId: "6211870")
         VKSdk.instance().register(self)
         VKSdk.instance().uiDelegate = self

@@ -12,4 +12,7 @@ struct const {
     struct AppDefaultKeys {
         static let accessToken = ""
     }
+    struct requestData {
+        static let url = "https://api.vk.com/method/"
+    }
 }

@@ -12,6 +12,7 @@ import UIKit
 class FeedVC: UIViewController {
     
     var authorizeManager = Vk_auth_manager()
+    
 
 }
 
@@ -22,6 +23,11 @@ extension FeedVC {
         super.viewDidLoad()
         
         authorizeManager.check_vk_auth(with: self, controller: self)
+        newsManager.getNewsForTape(success: { (asd) in
+            print("Удача")
+        }) { (error) in
+            print(error)
+        }
     }
 }
 
