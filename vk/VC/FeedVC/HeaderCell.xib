@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerCell" rowHeight="144" id="KGk-i7-Jjw" customClass="HeaderCell" customModule="vk" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="469" height="144"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="469" height="143.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rbd-E0-eTE">
+                        <rect key="frame" x="16" y="16" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="IYe-Ty-uFl"/>
+                            <constraint firstAttribute="width" constant="60" id="psK-ST-6NB"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Андрей Коноплев" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt7-Jx-yle">
+                        <rect key="frame" x="86" y="16" width="143" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="1YT-m4-SbR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-l7-Utp">
+                        <rect key="frame" x="86" y="61" width="51" height="64.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1r-sE-gdQ">
+                        <rect key="frame" x="411" y="105.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="SAa-x9-8Vf"/>
+                            <constraint firstAttribute="height" constant="20" id="vJ3-oz-kXy"/>
+                        </constraints>
+                        <state key="normal" title="info" image="info.png"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Rbd-E0-eTE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="4sV-Ab-vtq"/>
+                    <constraint firstItem="zEy-l7-Utp" firstAttribute="top" secondItem="qt7-Jx-yle" secondAttribute="bottom" constant="5" id="PER-ag-XOi"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="z1r-sE-gdQ" secondAttribute="bottom" constant="10" id="Pqt-C4-gQm"/>
+                    <constraint firstItem="qt7-Jx-yle" firstAttribute="leading" secondItem="Rbd-E0-eTE" secondAttribute="trailing" constant="10" id="Xo7-6B-cRh"/>
+                    <constraint firstItem="z1r-sE-gdQ" firstAttribute="top" secondItem="zEy-l7-Utp" secondAttribute="bottom" constant="-20" id="bWh-1T-Yrj"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="z1r-sE-gdQ" secondAttribute="trailing" constant="30" id="bs5-QS-OuQ"/>
+                    <constraint firstItem="Rbd-E0-eTE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="gHu-S1-yBQ"/>
+                    <constraint firstItem="qt7-Jx-yle" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="hVl-ct-EOM"/>
+                    <constraint firstItem="zEy-l7-Utp" firstAttribute="leading" secondItem="Rbd-E0-eTE" secondAttribute="trailing" constant="10" id="i4x-9P-7Aq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="avatarimage" destination="Rbd-E0-eTE" id="hBe-ed-fFI"/>
+                <outlet property="fullNameLabel" destination="qt7-Jx-yle" id="345-dA-1Z1"/>
+            </connections>
+            <point key="canvasLocation" x="109.5" y="104"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="info.png" width="20" height="20"/>
+    </resources>
+</document>

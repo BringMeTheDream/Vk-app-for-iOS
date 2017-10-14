@@ -14,5 +14,6 @@ struct const {
     }
     struct requestData {
         static let url = "https://api.vk.com/method/"
+        static let countNews = 10
     }
 }

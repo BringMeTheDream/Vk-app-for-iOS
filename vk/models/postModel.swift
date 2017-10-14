@@ -6,24 +6,26 @@
 //  Copyright © 2017 Андрей Коноплев. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class PostInfo {
     let type: String
     let likeCount: Int
     let repostsCount: Int
     let dateUpload: Int
-    let source_id: Int
+    let owner_id: Int
     let text: String
     
     var attachements: PostAttachments?
+    var author_name: String?
+    var author_photo_url: String?
 
-    init(type: String, likeCount: Int, repostsCount: Int, dateUpload: Int, source_id: Int, text: String) {
+    init(type: String, likeCount: Int, repostsCount: Int, dateUpload: Int, owner_id: Int, text: String) {
         self.type = type
         self.likeCount = likeCount
         self.repostsCount = repostsCount
         self.dateUpload = dateUpload
-        self.source_id = source_id
+        self.owner_id = owner_id
         self.text = text
     }
 }
@@ -31,14 +33,13 @@ class PostInfo {
 class PostAttachments {
     let type: String
     let source_url: String
-    let width: Int
-    let height: Int
+    var size: CGSize?
     
-    init(type: String, source_url: String, width: Int, height: Int) {
+    init(type: String, source_url: String) {
         self.type = type
         self.source_url = source_url
-        self.width = width
-        self.height = height
+    
     }
     
 }
+

@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--NewsVC-->
+        <!--Новости-->
         <scene sceneID="M6y-gg-GKF">
             <objects>
                 <viewController id="gej-We-etC" customClass="NewsVC" customModule="vk" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cnu-q1-Tdv">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cnu-q1-Tdv">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -36,7 +36,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ydj-2R-XHY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="b6y-Dh-yIw"/>
+                    <navigationItem key="navigationItem" title="Новости" id="b6y-Dh-yIw"/>
                     <connections>
                         <outlet property="tableView" destination="Cnu-q1-Tdv" id="26f-mh-52X"/>
                     </connections>
@@ -52,14 +52,35 @@
                     <view key="view" contentMode="scaleToFill" id="Ss0-hL-8pl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MwB-r9-yzB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="H7k-Mj-q56"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="PqF-wx-TBP" id="yf4-no-24a"/>
+                                    <outlet property="delegate" destination="PqF-wx-TBP" id="OiI-TY-4Ue"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MwB-r9-yzB" firstAttribute="leading" secondItem="lbe-zd-K1b" secondAttribute="leading" id="8kv-np-KOH"/>
+                            <constraint firstItem="MwB-r9-yzB" firstAttribute="top" secondItem="lbe-zd-K1b" secondAttribute="top" id="Djh-ig-7zr"/>
+                            <constraint firstItem="lbe-zd-K1b" firstAttribute="trailing" secondItem="MwB-r9-yzB" secondAttribute="trailing" id="qCm-Nd-WpT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="lbe-zd-K1b"/>
                     </view>
                     <navigationItem key="navigationItem" id="VUv-Ye-PV8"/>
+                    <connections>
+                        <outlet property="HeadTableView" destination="MwB-r9-yzB" id="lxo-bS-pMb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l8M-d0-ZaF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1065" y="-18"/>
+            <point key="canvasLocation" x="1064.8" y="-18.440779610194905"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lxa-D9-Gh0">
@@ -71,8 +92,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Okj-dM-JFD" kind="relationship" relationship="viewControllers" id="dL4-9Y-0sE"/>
                         <segue destination="9mJ-9A-D2J" kind="relationship" relationship="viewControllers" id="b9b-qp-wQE"/>
+                        <segue destination="Okj-dM-JFD" kind="relationship" relationship="viewControllers" id="dL4-9Y-0sE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9U1-4H-bzT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -83,7 +104,7 @@
         <scene sceneID="Upy-VR-aSL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9mJ-9A-D2J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Новости" id="YIR-bk-lfZ"/>
+                    <tabBarItem key="tabBarItem" title="Новости" image="tape.png" id="YIR-bk-lfZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Yfh-2C-egh">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -102,7 +123,7 @@
         <scene sceneID="S14-zP-JRd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Okj-dM-JFD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="feed" id="p0H-Ga-azv"/>
+                    <tabBarItem key="tabBarItem" title="feed" image="vkfeed.png" id="p0H-Ga-azv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="REX-KO-KLS">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -118,4 +139,8 @@
             <point key="canvasLocation" x="147.19999999999999" y="-17.091454272863569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tape.png" width="32" height="32"/>
+        <image name="vkfeed.png" width="30" height="30"/>
+    </resources>
 </document>
