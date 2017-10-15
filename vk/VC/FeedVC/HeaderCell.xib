@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="469" height="143.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rbd-E0-eTE">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rbd-E0-eTE" customClass="customImageViewProfile" customModule="vk" customModuleProvider="target">
                         <rect key="frame" x="16" y="16" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="IYe-Ty-uFl"/>
@@ -67,6 +67,7 @@
             <connections>
                 <outlet property="avatarimage" destination="Rbd-E0-eTE" id="hBe-ed-fFI"/>
                 <outlet property="fullNameLabel" destination="qt7-Jx-yle" id="345-dA-1Z1"/>
+                <outlet property="infoButton" destination="z1r-sE-gdQ" id="pOo-0x-NKd"/>
             </connections>
             <point key="canvasLocation" x="109.5" y="104"/>
         </tableViewCell>

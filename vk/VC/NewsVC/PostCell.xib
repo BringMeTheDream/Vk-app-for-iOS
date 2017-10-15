@@ -16,10 +16,10 @@
             <rect key="frame" x="0.0" y="0.0" width="475" height="356"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R8u-4f-xqG" id="7Ez-eL-xXM">
-                <rect key="frame" x="0.0" y="0.0" width="475" height="356"/>
+                <rect key="frame" x="0.0" y="0.0" width="475" height="355.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="J4E-wK-0Rv">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="J4E-wK-0Rv" customClass="customImageViewNews" customModule="vk" customModuleProvider="target">
                         <rect key="frame" x="13" y="13" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="sBd-3B-cLM"/>

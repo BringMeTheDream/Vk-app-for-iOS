@@ -53,7 +53,11 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
         let cell = HeadTableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath) as! HeaderCell
         if let userInCell = user {
             cell.configure(user: userInCell)
+            
+            cell.infoButton.addTarget(self, action: #selector(showInfo), for: .touchUpInside)
+           
         }
+    
         
         return cell
     }
@@ -80,5 +84,19 @@ extension FeedVC {
 extension FeedVC {
     func getRegistrate() {
         HeadTableView.register(UINib(nibName: "HeaderCell", bundle: nil), forCellReuseIdentifier: "headerCell")
+    }
+    
+    @objc func showInfo() {
+        performSegue(withIdentifier: "infoSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard segue.identifier == "infoSegue", let dest = segue.destination as? InfoVC else {
+            return
+        }
+        
+        dest.user = user
     }
 }

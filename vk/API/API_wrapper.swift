@@ -104,7 +104,7 @@ extension API_wrapper  {
         let url = const.requestData.url + "users.get"
         let params: [String: Any] = [
             "user_ids": user.screen_name,
-            "fields": "photo_50",
+            "fields": "photo_50%2C%20contacts",
             "v": 5.68
         ]
         
@@ -113,6 +113,24 @@ extension API_wrapper  {
             API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
             
         }
+        dataTask.resume()
+        return dataTask
+    }
+}
+
+
+extension API_wrapper {
+    static func setStatus(status: String)-> URLSessionTask {
+        
+        let url = const.requestData.url + "status.set"
+        let params: [String: Any] = [
+            "text": status,
+            "access_token": getToken(),
+            "v": 5.68
+        ]
+        
+        let request = API_conf.getRequst(url: url, params: params)
+        let dataTask = URLSession.shared.dataTask(with: request)
         dataTask.resume()
         return dataTask
     }

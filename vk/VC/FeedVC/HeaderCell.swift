@@ -10,6 +10,7 @@ import Kingfisher
 
 class HeaderCell: UITableViewCell {
 
+    @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var avatarimage: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
     
@@ -22,5 +23,7 @@ class HeaderCell: UITableViewCell {
             fullNameLabel.text = user.getFullName()
             avatarimage.kf.setImage(with: URL(string: user.avatarImage ?? ""))
     }
+    
+
     
 }

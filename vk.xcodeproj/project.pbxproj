@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7B9ACE2A9D4406C0D8D18C92 /* Pods_vk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBE7A39867EF09C70D8133A9 /* Pods_vk.framework */; };
+		9A09568D1F926D2200E448A6 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A09568C1F926D2200E448A6 /* InfoVC.swift */; };
+		9A09568F1F935DC400E448A6 /* statusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A09568E1F935DC400E448A6 /* statusVC.swift */; };
+		9A0956921F93663E00E448A6 /* customImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0956911F93663E00E448A6 /* customImageView.swift */; };
 		9A3A29011F8A1B85000856F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A29001F8A1B85000856F0 /* AppDelegate.swift */; };
 		9A3A29061F8A1B85000856F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3A29041F8A1B85000856F0 /* Main.storyboard */; };
 		9A3A29081F8A1B85000856F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A3A29071F8A1B85000856F0 /* Assets.xcassets */; };
@@ -39,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		85B3025A524DECD56BBE21D5 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
+		9A09568C1F926D2200E448A6 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
+		9A09568E1F935DC400E448A6 /* statusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statusVC.swift; sourceTree = "<group>"; };
+		9A0956911F93663E00E448A6 /* customImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customImageView.swift; sourceTree = "<group>"; };
 		9A3A28FD1F8A1B85000856F0 /* vk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3A29001F8A1B85000856F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A3A29051F8A1B85000856F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +107,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9A09568B1F926CFE00E448A6 /* infoVC */ = {
+			isa = PBXGroup;
+			children = (
+				9A09568C1F926D2200E448A6 /* InfoVC.swift */,
+				9A09568E1F935DC400E448A6 /* statusVC.swift */,
+			);
+			path = infoVC;
+			sourceTree = "<group>";
+		};
+		9A0956901F93661500E448A6 /* customViews */ = {
+			isa = PBXGroup;
+			children = (
+				9A0956911F93663E00E448A6 /* customImageView.swift */,
+			);
+			path = customViews;
+			sourceTree = "<group>";
+		};
 		9A3A28F41F8A1B85000856F0 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				9A3A29041F8A1B85000856F0 /* Main.storyboard */,
+				9A0956901F93661500E448A6 /* customViews */,
 				9A9DE3661F8E9A8B00789289 /* Helper */,
 				9A9DE3461F8D196000789289 /* models */,
 				9A9DE33D1F8BD0A700789289 /* API */,
@@ -162,6 +186,7 @@
 		9A9DE30F1F8A229F00789289 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				9A09568B1F926CFE00E448A6 /* infoVC */,
 				9A9DE34A1F8E074A00789289 /* FeedVC */,
 				9A9DE3491F8E073D00789289 /* NewsVC */,
 			);
@@ -399,14 +424,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A09568F1F935DC400E448A6 /* statusVC.swift in Sources */,
 				9AD1E3571F901D50001FBE6A /* HeaderCell.swift in Sources */,
 				9A9DE3651F8E86D400789289 /* UserModel.swift in Sources */,
+				9A0956921F93663E00E448A6 /* customImageView.swift in Sources */,
 				9A9DE3681F8E9AD900789289 /* Helper.swift in Sources */,
 				9A9DE3111F8A22CA00789289 /* FeedVC.swift in Sources */,
 				9A9DE3151F8A236700789289 /* vk_auth_manager.swift in Sources */,
 				9AD1E35D1F9022AF001FBE6A /* ProfileInfoManager.swift in Sources */,
 				9A9DE33F1F8BD0B800789289 /* API_conf.swift in Sources */,
 				9A9DE31C1F8A331600789289 /* const.swift in Sources */,
+				9A09568D1F926D2200E448A6 /* InfoVC.swift in Sources */,
 				9A9DE3171F8A2D1C00789289 /* AuthorizationDelegate.swift in Sources */,
 				9A3A29011F8A1B85000856F0 /* AppDelegate.swift in Sources */,
 				9A9DE3631F8E7F5B00789289 /* UserManager.swift in Sources */,
