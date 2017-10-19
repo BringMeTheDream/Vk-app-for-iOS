@@ -104,7 +104,8 @@ extension API_wrapper  {
         let url = const.requestData.url + "users.get"
         let params: [String: Any] = [
             "user_ids": user.screen_name,
-            "fields": "photo_50%2C%20contacts",
+            "fields": "counters%2Cphoto_50%2Ccontacts",
+            "access_token": getToken(),
             "v": 5.68
         ]
         
@@ -130,7 +131,7 @@ extension API_wrapper {
         ]
         
         let request = API_conf.getRequst(url: url, params: params)
-        let dataTask = URLSession.shared.dataTask(with: request)
+        let dataTask = URLSession.shared.dataTask(with: request) 
         dataTask.resume()
         return dataTask
     }

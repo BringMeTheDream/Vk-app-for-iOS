@@ -14,17 +14,18 @@ class User {
     let last_name: String
     let screen_name: String
     let sex: Int
-    let phone_number: String
-    
+   
+    var phone_number: String?
     var avatarImage: String?
     var user_id: Int?
+    var counters = [String]()
     
-    init(first_name: String, last_name: String, screen_name: String, sex: Int, phone_number: String) {
+    init(first_name: String, last_name: String, screen_name: String, sex: Int) {
         self.first_name = first_name
         self.last_name = last_name
         self.screen_name = screen_name
         self.sex = sex
-        self.phone_number = phone_number
+        
     }
     
     func getFullName()-> String {

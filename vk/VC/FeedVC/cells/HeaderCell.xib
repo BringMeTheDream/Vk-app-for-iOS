@@ -69,7 +69,7 @@
                 <outlet property="fullNameLabel" destination="qt7-Jx-yle" id="345-dA-1Z1"/>
                 <outlet property="infoButton" destination="z1r-sE-gdQ" id="pOo-0x-NKd"/>
             </connections>
-            <point key="canvasLocation" x="109.5" y="104"/>
+            <point key="canvasLocation" x="72" y="69"/>
         </tableViewCell>
     </objects>
     <resources>

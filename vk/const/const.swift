@@ -16,4 +16,8 @@ struct const {
         static let url = "https://api.vk.com/method/"
         static let countNews = 10
     }
+    
+    struct user_info {
+        static let infoArray = ["friends", "followers", "groups", "photos", "videos", "audios", "gifts", "albums", "notes"]
+    }
 }

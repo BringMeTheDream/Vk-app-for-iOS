@@ -278,7 +278,7 @@ NSString *VK_AUTHORIZE_URL_STRING = @"vkauthorize://authorize";
     }
 }
 
-- (void)dismissWithCompletion:(void (^)())completion {
+- (void)dismissWithCompletion:(void (^)(void))completion {
     _finished = YES;
 
     if (_internalNavigationController.isBeingDismissed) {

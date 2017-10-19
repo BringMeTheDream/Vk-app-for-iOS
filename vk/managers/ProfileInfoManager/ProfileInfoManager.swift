@@ -21,9 +21,8 @@ class ProfileInfoManager {
             let last_name = profileInfo["response"]["last_name"].stringValue
             let sex = profileInfo["response"]["sex"].intValue
             let screen_name = profileInfo["response"]["screen_name"].stringValue
-            let phone_number = profileInfo["response"]["phone"].stringValue
 
-            let user = User(first_name: first_name, last_name: last_name, screen_name: screen_name, sex: sex, phone_number: phone_number)
+            let user = User(first_name: first_name, last_name: last_name, screen_name: screen_name, sex: sex)
             
             success(user)
             
@@ -37,14 +36,30 @@ class ProfileInfoManager {
         _ = API_wrapper.getUserProfileInfo(user: user, success: { (response) in
             let userInfo = JSON(response)
             let infoArray = userInfo["response"].arrayValue
+            
 
             for info in infoArray {
                 let avatarImageUrl = info["photo_50"].stringValue
                 let user_id = info["id"].intValue
+                let phone_number = info["mobile_phone"].stringValue
+                let counters = info["counters"].dictionaryValue
+                var countArray = [String]()
+                print(user_id)
+                for discription in const.user_info.infoArray
+                {
+                    guard let element = counters[discription]?.stringValue else { return }
+                  countArray.append(element)
+                    
+                }
+                
+                
                 user.avatarImage = avatarImageUrl
                 user.user_id = user_id
+                user.phone_number = phone_number
+                user.counters.append(contentsOf: countArray)
                 
             }
+            
            
             success(user)
         }, failure: { (error) in

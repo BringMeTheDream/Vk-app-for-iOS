@@ -22,6 +22,7 @@ class InfoVC: UIViewController {
         InfoTableView.estimatedRowHeight = 120
         InfoTableView.rowHeight = UITableViewAutomaticDimension
         guard let User = user else { return }
+        self.navigationItem.title = user?.getFullName()
         setProperties(user: User)
     }
     
@@ -91,7 +92,7 @@ extension InfoVC {
         
         let name = user.getFullName()
         let sex = getSex(sex: user.sex)
-        let phone_number = user.phone_number
+        let phone_number = user.phone_number ?? ""
         
         propertiesArray.append(name)
         propertiesArray.append(sex)
