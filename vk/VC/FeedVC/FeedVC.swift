@@ -13,10 +13,11 @@ import UIKit
 class FeedVC: UIViewController {
     
     @IBOutlet weak var HeadTableView: UITableView!
+    @IBOutlet weak var headerTavbleViewConstraint: NSLayoutConstraint!
     
     var authorizeManager = Vk_auth_manager()
     var user: User?
-    
+    var category = ""
 }
 
 
@@ -27,27 +28,26 @@ extension FeedVC {
         super.viewDidLoad()
         HeadTableView.estimatedRowHeight = 120
         HeadTableView.rowHeight = UITableViewAutomaticDimension
-        authorizeManager.check_vk_auth(with: self, controller: self)
         getRegistrate()
-        sendRequest()
+        authorizeManager.check_vk_auth(with: self, controller: self)
     }
 }
 
 
 extension FeedVC: AuthorizationDelegate {
     func AuthorizationDidFailed() {
-        print("fail")
+        print("failed")
     }
     
     func AuthorizationDidComplete() {
-        print("complete")
+        sendRequest()
     }
 }
 
 extension FeedVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,55 +60,41 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
             }
         } else if indexPath.row == 1 {
             let cell = HeadTableView.dequeueReusableCell(withIdentifier: "cellForCollection", for: indexPath) as! CounterCell
+            cell.configure(user: self.user, category: self.category, controller: self)
+            return cell
+        } else if indexPath.row == 2 {
+            let cell = HeadTableView.dequeueReusableCell(withIdentifier: "cellForPhotoCollection", for: indexPath) as! PhotoCell
+            cell.configure(user: self.user, controller: self)
+            let labelAmountPhotos = cell.contentView.viewWithTag(1) as! UILabel
+            labelAmountPhotos.text = String(describing: self.user?.photos.count ?? 0) + " фото"
+            
+            self.headerTavbleViewConstraint.constant = self.HeadTableView.contentSize.height
             return cell
         }
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == 1 {
-            if let cell = cell as? CounterCell {
-                cell.collectionView.dataSource = self
-                cell.collectionView.reloadData()
-            }
-        }
-    }
-}
-//MARK: - collectionView with counters configurate
-extension FeedVC: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let unwrappUser = user else {
-         return 0
-        }
-        return unwrappUser.counters.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CounterCell", for: indexPath)
-        let numberLabel = cell.contentView.viewWithTag(11) as! UILabel
-        let descriptionLabel = cell.contentView.viewWithTag(12) as! UILabel
-        numberLabel.text = user?.counters[indexPath.row]
-        descriptionLabel.text = const.user_info.infoArray[indexPath.row]
-        
-        return cell
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-  
         return indexPath.row == 1 ? 60 : UITableViewAutomaticDimension
     }
+    
+    
 }
+
 
 //MARK: - request to API and reload view
 extension FeedVC {
     func sendRequest() {
         ProfileInfoManager.getAccountInfoManager(success: { (user) in
-            ProfileInfoManager.getUsersInfoManager(user: user, success: { (userWithAvatar) in
-                DispatchQueue.main.async {
-                    self.user = userWithAvatar
-                    self.navigationItem.title = user.first_name
-                    self.HeadTableView.reloadData()
-                }
+            ProfileInfoManager.getUsersInfoManager(user: user, success: { (userWithInfo) in
+               PhotoProfileManager.getProfilePhoto(user: user, success: { () in
+                    DispatchQueue.main.async {
+                        self.user = userWithInfo
+                        self.navigationItem.title = user.first_name
+                        self.HeadTableView.reloadData()
+                    }
+                })
+               
             })
         }) { (error) in
             print(error)
@@ -129,10 +115,14 @@ extension FeedVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard segue.identifier == "infoSegue", let dest = segue.destination as? InfoVC else {
-            return
+        if  segue.identifier == "infoSegue" , let dest = segue.destination as? InfoVC {
+            dest.user = user
+        } else if segue.identifier == "listSegue" , let dest = segue.destination as? ListVC {
+            dest.user = user
+            dest.category = category
+        } else if segue.identifier == "presentationSegue", let dest = segue.destination as? PhotoGalleryVC {
+            dest.photosArray = (user?.photos)!
         }
-        
-        dest.user = user
     }
 }
+

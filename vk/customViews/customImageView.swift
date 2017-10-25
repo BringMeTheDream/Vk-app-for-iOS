@@ -37,3 +37,19 @@ class customImageViewNews: UIImageView {
         
     }
 }
+
+class customImageViewList: UIImageView {
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: superview)
+        setStyle()
+    }
+    
+    private func setStyle() {
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.white.cgColor
+        layer.cornerRadius = 25
+        layer.masksToBounds = true
+        
+    }
+    
+}

@@ -18,7 +18,9 @@ class User {
     var phone_number: String?
     var avatarImage: String?
     var user_id: Int?
+    var online: Int?
     var counters = [String]()
+    var photos = [PhotoModel]()
     
     init(first_name: String, last_name: String, screen_name: String, sex: Int) {
         self.first_name = first_name

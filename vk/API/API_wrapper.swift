@@ -35,8 +35,8 @@ class API_wrapper {
     }
 }
 
-extension API_wrapper {
     //MARK:- get info about user
+extension API_wrapper {
     static func getUserInfo(id: Int, success: @escaping (_ json: Any)->Void, failure: (_ errorDescription: String)-> Void)->URLSessionTask {
         
         let url = const.requestData.url + "users.get"
@@ -119,7 +119,7 @@ extension API_wrapper  {
     }
 }
 
-
+//MARK: - set status
 extension API_wrapper {
     static func setStatus(status: String)-> URLSessionTask {
         
@@ -137,6 +137,54 @@ extension API_wrapper {
     }
 }
 
+//MARK: get users and groups info
+extension API_wrapper {
+    //users
+    static func getFriendsList(id: String, method: String, success: @escaping (_ json: Any)-> Void, failure: (_ errorDescription: String)-> Void)-> URLSessionTask {
+
+        let url = const.requestData.url + method
+        let params: [String: Any] = [
+            "user_id": id,
+            "fields": "photo_50%2Ccity%2C%20online%2Csex",
+            "count" : 1000,
+            "name_case": "Nom",
+            "v": 5.68
+        ]
+
+        let request = API_conf.getRequst(url: url, params: params)
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
+            
+        }
+        dataTask.resume()
+        return dataTask
+    }
+}
+
+//MARK: - get Photo from profil
+extension API_wrapper {
+    static func getProfilePhoto(id: Int, success: @escaping (_ json: Any)-> Void)-> URLSessionTask {
+        let url = const.requestData.url + "photos.getAll"
+        let params: [String: Any] = [
+            "user_id": id,
+            "album_id": "wall",
+            "rev": 0,
+            "extended": 0,
+            "photo_sizes": 0,
+            "access_token": getToken(),
+            "v": 5.68
+            ]
+        
+        let request = API_conf.getRequst(url: url, params: params)
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
+        }
+        dataTask.resume()
+        return dataTask
+    }
+}
 
 
 extension API_wrapper {
