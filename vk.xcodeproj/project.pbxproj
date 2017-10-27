@@ -236,7 +236,7 @@
 		9A9DE30F1F8A229F00789289 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				9AF08A311F99332200965F92 /* DataVC */,
+				9AF08A311F99332200965F92 /* ListVC */,
 				9A09568B1F926CFE00E448A6 /* InfoVC */,
 				9A9DE34A1F8E074A00789289 /* FeedVC */,
 				9A9DE3491F8E073D00789289 /* NewsVC */,
@@ -336,13 +336,13 @@
 			path = ProfileInfoManager;
 			sourceTree = "<group>";
 		};
-		9AF08A311F99332200965F92 /* DataVC */ = {
+		9AF08A311F99332200965F92 /* ListVC */ = {
 			isa = PBXGroup;
 			children = (
 				9AF08A321F99336300965F92 /* ListVC.swift */,
 				9A0BE7A51F995A5E009B33A5 /* ListCell.swift */,
 			);
-			path = DataVC;
+			path = ListVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

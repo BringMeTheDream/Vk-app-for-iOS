@@ -20,12 +20,13 @@ class PhotoProfileManager {
             for item in arrayResponse {
                 let id = item["owner_id"].intValue
                 let url = item["photo_75"].stringValue
+                let url_604 = item["photo_604"].stringValue
                 let date = item["date"].intValue
                 let width = item["width"].intValue
                 let height = item["height"].intValue
                 let size = CGSize(width: width, height: height)
                 
-                let photo = PhotoModel(url: url, owner_id: id, date: date, size: size)
+                let photo = PhotoModel(url: url, url_604: url_604, owner_id: id, date: date, size: size)
                 unwrappedUser.photos.append(photo)
             }
             success()

@@ -13,7 +13,7 @@ class Group {
     let id: String
     let avatar: String
     
-    init(name: String, id: String, avatar: String, online: Int) {
+    init(name: String, id: String, avatar: String) {
         self.name = name
         self.id = id
         self.avatar = avatar

@@ -18,6 +18,7 @@ class FeedVC: UIViewController {
     var authorizeManager = Vk_auth_manager()
     var user: User?
     var category = ""
+    var selectedGalleryIndex = 0
 }
 
 
@@ -122,6 +123,7 @@ extension FeedVC {
             dest.category = category
         } else if segue.identifier == "presentationSegue", let dest = segue.destination as? PhotoGalleryVC {
             dest.photosArray = (user?.photos)!
+            dest.selectedPhoto = self.selectedGalleryIndex
         }
     }
 }

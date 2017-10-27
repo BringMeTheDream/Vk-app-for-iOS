@@ -160,6 +160,30 @@ extension API_wrapper {
         dataTask.resume()
         return dataTask
     }
+    
+    //groups
+    static func getGroupsList(user_id: String, success: @escaping (_ json: Any)-> Void, failure: (_ errorDescription: String)-> Void)-> URLSessionTask {
+        
+        let url = const.requestData.url + "groups.get"
+        let params: [String: Any] = [
+            "user_id": user_id,
+            "extended": 1,
+            "count" : 1000,
+            "access_token": getToken(),
+            "v": 5.68
+        ]
+        
+        let request = API_conf.getRequst(url: url, params: params)
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
+            
+        }
+        dataTask.resume()
+        return dataTask
+    }
+    
+   
 }
 
 //MARK: - get Photo from profil

@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -242,7 +242,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2F7-c5-ias">
-                                                    <rect key="frame" x="0.0" y="0.0" width="67" height="70"/>
+                                                    <rect key="frame" x="16" y="20" width="35" height="50"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -286,7 +286,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Lb-2d-W5K">
-                                <rect key="frame" x="0.0" y="64" width="375" height="563"/>
+                                <rect key="frame" x="0.0" y="109" width="375" height="518"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userCell" rowHeight="65" id="T7m-J7-iQc" customClass="ListCell" customModule="vk" customModuleProvider="target">
@@ -367,21 +367,36 @@
                                     <constraint firstItem="FvB-ba-7tg" firstAttribute="centerX" secondItem="dfI-dH-Va5" secondAttribute="centerX" id="o80-Pw-z0G"/>
                                 </constraints>
                             </view>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Поиск" translatesAutoresizingMaskIntoConstraints="NO" id="9sr-29-uht">
+                                <rect key="frame" x="0.0" y="64" width="375" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="gBR-Xy-DCk"/>
+                                </constraints>
+                                <offsetWrapper key="searchTextPositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4oI-Fd-v3M" id="Ohe-CD-dXx"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4Lb-2d-W5K" firstAttribute="trailing" secondItem="QXQ-mH-E7l" secondAttribute="trailing" id="1pc-5j-WHN"/>
+                            <constraint firstItem="4Lb-2d-W5K" firstAttribute="leading" secondItem="QXQ-mH-E7l" secondAttribute="leading" id="2Pj-VF-mdS"/>
                             <constraint firstItem="QXQ-mH-E7l" firstAttribute="trailing" secondItem="dfI-dH-Va5" secondAttribute="trailing" id="4JN-iF-bxU"/>
-                            <constraint firstItem="4Lb-2d-W5K" firstAttribute="trailing" secondItem="QXQ-mH-E7l" secondAttribute="trailing" id="CA3-Jj-jiB"/>
-                            <constraint firstItem="4Lb-2d-W5K" firstAttribute="top" secondItem="QXQ-mH-E7l" secondAttribute="top" id="Jo2-dC-9ai"/>
-                            <constraint firstItem="dfI-dH-Va5" firstAttribute="top" secondItem="4Lb-2d-W5K" secondAttribute="bottom" id="Pne-ku-eUS"/>
+                            <constraint firstItem="9sr-29-uht" firstAttribute="trailing" secondItem="QXQ-mH-E7l" secondAttribute="trailing" id="B1L-lT-JTz"/>
+                            <constraint firstItem="9sr-29-uht" firstAttribute="leading" secondItem="QXQ-mH-E7l" secondAttribute="leading" id="NHT-v9-U9N"/>
+                            <constraint firstItem="dfI-dH-Va5" firstAttribute="top" secondItem="4Lb-2d-W5K" secondAttribute="bottom" id="Zrm-5w-7NN"/>
+                            <constraint firstItem="4Lb-2d-W5K" firstAttribute="top" secondItem="9sr-29-uht" secondAttribute="bottom" id="aTv-wg-AWU"/>
                             <constraint firstItem="dfI-dH-Va5" firstAttribute="bottom" secondItem="QXQ-mH-E7l" secondAttribute="bottom" id="jvg-DK-gaH"/>
-                            <constraint firstItem="dfI-dH-Va5" firstAttribute="top" secondItem="4Lb-2d-W5K" secondAttribute="bottom" id="nJX-BA-Juy"/>
                             <constraint firstItem="dfI-dH-Va5" firstAttribute="leading" secondItem="QXQ-mH-E7l" secondAttribute="leading" id="sfK-hw-yno"/>
-                            <constraint firstItem="4Lb-2d-W5K" firstAttribute="leading" secondItem="QXQ-mH-E7l" secondAttribute="leading" id="u3I-I1-iC0"/>
+                            <constraint firstItem="9sr-29-uht" firstAttribute="top" secondItem="QXQ-mH-E7l" secondAttribute="top" id="x39-pk-Wiw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QXQ-mH-E7l"/>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="dfI-dH-Va5" id="h4g-lW-iWd"/>
+                        <outlet property="searchBar" destination="9sr-29-uht" id="hWt-XR-FsE"/>
                         <outlet property="segmentController" destination="FvB-ba-7tg" id="Qnh-8w-7sN"/>
                         <outlet property="tableView" destination="4Lb-2d-W5K" id="ftO-PB-kvg"/>
                     </connections>

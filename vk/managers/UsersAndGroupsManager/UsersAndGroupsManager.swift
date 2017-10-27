@@ -10,6 +10,7 @@ import SwiftyJSON
 
 
 class UsersAndGroupsManager {
+    //users
     static func getFriends(id: String, category: String, success: @escaping (_ usersArray: [User])-> Void, failure: (_ errorDescription: String)-> Void) {
         var method = ""
         if category == "friends" {
@@ -40,6 +41,29 @@ class UsersAndGroupsManager {
             success(usersArray)
         } , failure: { (error) in
             failure(error)
+        })
+    }
+    
+    //groups
+    static func getGroups(user_id: String, success: @escaping (_ groupsArray: [Group])-> Void) {
+        _ = API_wrapper.getGroupsList(user_id: user_id, success: { (response) in
+            let responseJSON = JSON(response)
+            let arrayOfResponse = responseJSON["response"]["items"].arrayValue
+            var groupsArray = [Group]()
+            
+            for item in arrayOfResponse {
+                let id = item["id"].stringValue
+                let name = item["name"].stringValue
+                let avatar_img = item["photo_50"].stringValue
+                
+                let groupObject = Group(name: name, id: id, avatar: avatar_img)
+                groupsArray.append(groupObject)
+            }
+            
+            success(groupsArray)
+            
+        }, failure: { (error) in
+            print(error)
         })
     }
 }

@@ -51,7 +51,9 @@ extension PhotoCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        controller.selectedGalleryIndex = indexPath.row
         controller.performSegue(withIdentifier: "presentationSegue", sender: self)
+        
     }
 }
 
