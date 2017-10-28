@@ -11,7 +11,7 @@ import UIKit
 
 class ProfileInfoManager {
     //get account info
-    static func getAccountInfoManager(success: @escaping (_ user: User)-> Void, failure: (_ errorDescription: String)-> Void) {
+    static func getAccountInfoManager(success: @escaping (_ user: User)-> Void, failure: @escaping (_ errorDescription: String)-> Void) {
         _ = API_wrapper.getAccountInfo(success: { (response) in
             let profileInfo = JSON(response)
            

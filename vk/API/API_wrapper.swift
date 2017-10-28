@@ -37,7 +37,7 @@ class API_wrapper {
 
     //MARK:- get info about user
 extension API_wrapper {
-    static func getUserInfo(id: Int, success: @escaping (_ json: Any)->Void, failure: (_ errorDescription: String)-> Void)->URLSessionTask {
+    static func getUserInfo(id: Int, success: @escaping (_ json: Any)->Void, failure: @escaping (_ errorDescription: String)-> Void)->URLSessionTask {
         
         let url = const.requestData.url + "users.get"
         let params: [String: Any] = [
@@ -48,7 +48,7 @@ extension API_wrapper {
         
         let request = API_conf.getRequst(url: url, params: params)
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
-            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
             
         }
         dataTask.resume()
@@ -56,7 +56,7 @@ extension API_wrapper {
     }
     
     //MARK:- get info about group
-    static func getGroupInfo(id: Int, success: @escaping (_ json: Any)->Void, failure: (_ errorDescription: String)-> Void)->URLSessionTask {
+    static func getGroupInfo(id: Int, success: @escaping (_ json: Any)->Void, failure: @escaping (_ errorDescription: String)-> Void)->URLSessionTask {
         
         let url = const.requestData.url + "groups.getById"
         let params: [String: Any] = [
@@ -66,7 +66,7 @@ extension API_wrapper {
         
         let request = API_conf.getRequst(url: url, params: params)
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
-            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
             
         }
         dataTask.resume()
@@ -78,7 +78,7 @@ extension API_wrapper {
     //MARK: - get info about Profile
 extension API_wrapper  {
     
-    static func getAccountInfo(success: @escaping (_ json: Any)->Void, failure: (_ errorDescription: String)-> Void)->URLSessionTask {
+    static func getAccountInfo(success: @escaping (_ json: Any)->Void, failure: @escaping (_ errorDescription: String)-> Void)->URLSessionTask {
         
         let url = const.requestData.url + "account.getProfileInfo"
         let params: [String: Any] = [
@@ -88,7 +88,7 @@ extension API_wrapper  {
         
         let request = API_conf.getRequst(url: url, params: params)
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
-            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
             
         }
         dataTask.resume()
@@ -99,7 +99,7 @@ extension API_wrapper  {
 
 extension API_wrapper  {
     
-    static func getUserProfileInfo(user: User, success: @escaping (_ json: Any)->Void, failure: (_ errorDescription: String)-> Void)->URLSessionTask {
+    static func getUserProfileInfo(user: User, success: @escaping (_ json: Any)->Void, failure: @escaping (_ errorDescription: String)-> Void)->URLSessionTask {
         
         let url = const.requestData.url + "users.get"
         let params: [String: Any] = [
@@ -111,7 +111,7 @@ extension API_wrapper  {
         
         let request = API_conf.getRequst(url: url, params: params)
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
-            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
             
         }
         dataTask.resume()
@@ -140,7 +140,7 @@ extension API_wrapper {
 //MARK: get users and groups info
 extension API_wrapper {
     //users
-    static func getFriendsList(id: String, method: String, success: @escaping (_ json: Any)-> Void, failure: (_ errorDescription: String)-> Void)-> URLSessionTask {
+    static func getFriendsList(id: String, method: String, success: @escaping (_ json: Any)-> Void, failure: @escaping (_ errorDescription: String)-> Void)-> URLSessionTask {
 
         let url = const.requestData.url + method
         let params: [String: Any] = [
@@ -154,7 +154,7 @@ extension API_wrapper {
         let request = API_conf.getRequst(url: url, params: params)
         
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
-            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
             
         }
         dataTask.resume()
@@ -162,7 +162,7 @@ extension API_wrapper {
     }
     
     //groups
-    static func getGroupsList(user_id: String, success: @escaping (_ json: Any)-> Void, failure: (_ errorDescription: String)-> Void)-> URLSessionTask {
+    static func getGroupsList(user_id: String, success: @escaping (_ json: Any)-> Void, failure: @escaping (_ errorDescription: String)-> Void)-> URLSessionTask {
         
         let url = const.requestData.url + "groups.get"
         let params: [String: Any] = [
@@ -176,14 +176,34 @@ extension API_wrapper {
         let request = API_conf.getRequst(url: url, params: params)
         
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
-            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
             
         }
         dataTask.resume()
         return dataTask
     }
-    
-   
+}
+
+extension API_wrapper {
+    static func getVideoList(user_id: Int, success: @escaping (_ json: Any)-> Void, failure: @escaping (_ errorDescription: String)-> Void)-> URLSessionTask {
+        
+        let url = const.requestData.url + "video.get"
+        let params: [String: Any] = [
+            "owner_id": user_id,
+            "extended": 1,
+            "access_token": getToken(),
+            "v": 5.68
+        ]
+        
+        let request = API_conf.getRequst(url: url, params: params)
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
+            
+        }
+        dataTask.resume()
+        return dataTask
+    }
 }
 
 //MARK: - get Photo from profil

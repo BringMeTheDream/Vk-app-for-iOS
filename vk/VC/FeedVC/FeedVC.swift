@@ -124,6 +124,8 @@ extension FeedVC {
         } else if segue.identifier == "presentationSegue", let dest = segue.destination as? PhotoGalleryVC {
             dest.photosArray = (user?.photos)!
             dest.selectedPhoto = self.selectedGalleryIndex
+        } else if segue.identifier == "videoListSegue", let dest = segue.destination as? VideoListVC {
+            dest.user = user
         }
     }
 }

@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class UsersAndGroupsManager {
     //users
-    static func getFriends(id: String, category: String, success: @escaping (_ usersArray: [User])-> Void, failure: (_ errorDescription: String)-> Void) {
+    static func getFriends(id: String, category: String, success: @escaping (_ usersArray: [User])-> Void, failure: @escaping (_ errorDescription: String)-> Void) {
         var method = ""
         if category == "friends" {
             method = "friends.get"

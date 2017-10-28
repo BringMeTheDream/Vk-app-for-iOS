@@ -9,7 +9,7 @@
 import VK_ios_sdk
 
 class Vk_auth_manager: NSObject {
-    static let permissions = ["friends", "photos", "status", "messages", "offline", "groups", "email", "wall"]
+    static let permissions = ["friends", "photos", "status", "messages", "offline", "groups", "email", "wall","video"]
     
     
     var delegate: AuthorizationDelegate!

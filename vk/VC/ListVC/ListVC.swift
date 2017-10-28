@@ -27,7 +27,7 @@ class ListVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentController: UISegmentedControl!
     @IBOutlet weak var bottomView: UIView!
-    let searchController = UISearchController(searchResultsController: nil)
+
     
     //MARK: - didLoad
     override func viewDidLoad() {
@@ -96,6 +96,10 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

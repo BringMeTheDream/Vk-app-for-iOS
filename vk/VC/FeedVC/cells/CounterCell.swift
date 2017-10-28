@@ -55,6 +55,10 @@ extension CounterCell: UICollectionViewDataSource, UICollectionViewDelegate {
         controller.category = cat
         if cat == "friends" || cat == "followers" || cat == "groups" {
             controller.performSegue(withIdentifier: "listSegue", sender: self)
+        } else if cat == "videos" {
+            controller.performSegue(withIdentifier: "videoListSegue", sender: self)
+        } else if cat == "photos" {
+            controller.performSegue(withIdentifier: "presentationSegue", sender: self)
         }
     }
 }

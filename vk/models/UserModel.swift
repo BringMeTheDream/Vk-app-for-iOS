@@ -21,13 +21,13 @@ class User {
     var online: Int?
     var counters = [String]()
     var photos = [PhotoModel]()
+    var videos = [VideoModel]()
     
     init(first_name: String, last_name: String, screen_name: String, sex: Int) {
         self.first_name = first_name
         self.last_name = last_name
         self.screen_name = screen_name
         self.sex = sex
-        
     }
     
     func getFullName()-> String {

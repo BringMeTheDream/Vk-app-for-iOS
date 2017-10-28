@@ -23,8 +23,6 @@ class PhotoGalleryVC: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.black
         view.layoutIfNeeded()
         self.collectionView.scrollToItem(at:IndexPath(item: selectedPhoto, section: 0), at: .right, animated: false)
-       
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,8 +45,6 @@ extension PhotoGalleryVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         navigationItem.title = "\(indexPath.row + 1) из \(photosArray.count)"
-        
-        
     }
     
 }
