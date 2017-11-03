@@ -21,8 +21,7 @@ class VideoVC: UIViewController {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 120
         tableView.rowHeight = UITableViewAutomaticDimension
-        guard let unwrapVideo = video else { return }
-        self.navigationItem.title = "Видеозапись"//unwrapVideo.title
+        self.navigationItem.title = "Видеозапись"
        tableView.register(UINib(nibName: "VideoCellVC", bundle: nil), forCellReuseIdentifier: "videoCell")
     }
 

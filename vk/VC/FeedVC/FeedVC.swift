@@ -15,6 +15,7 @@ class FeedVC: UIViewController {
     @IBOutlet weak var HeadTableView: UITableView!
     @IBOutlet weak var headerTavbleViewConstraint: NSLayoutConstraint!
     
+    var loadingView: LoadingView!
     var authorizeManager = Vk_auth_manager()
     var user: User?
     var category = ""
@@ -27,10 +28,12 @@ extension FeedVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loading()
         HeadTableView.estimatedRowHeight = 120
         HeadTableView.rowHeight = UITableViewAutomaticDimension
         getRegistrate()
         authorizeManager.check_vk_auth(with: self, controller: self)
+        
     }
 }
 
@@ -76,7 +79,7 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.row == 1 ? 60 : UITableViewAutomaticDimension
+        return indexPath.row == 1 ? 61 : UITableViewAutomaticDimension
     }
     
     
@@ -93,6 +96,7 @@ extension FeedVC {
                         self.user = userWithInfo
                         self.navigationItem.title = user.first_name
                         self.HeadTableView.reloadData()
+                        self.loadingView.removeFromSuperview()
                     }
                 })
                
@@ -127,6 +131,14 @@ extension FeedVC {
         } else if segue.identifier == "videoListSegue", let dest = segue.destination as? VideoListVC {
             dest.user = user
         }
+    }
+}
+
+extension FeedVC {
+    func loading() {
+        self.HeadTableView.register(UINib(nibName: "LoadingView", bundle: nil),forCellReuseIdentifier: "loading")
+        self.loadingView = LoadingView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        self.HeadTableView.addSubview(loadingView)
     }
 }
 

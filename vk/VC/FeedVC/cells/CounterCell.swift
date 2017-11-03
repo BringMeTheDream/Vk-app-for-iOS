@@ -58,6 +58,7 @@ extension CounterCell: UICollectionViewDataSource, UICollectionViewDelegate {
         } else if cat == "videos" {
             controller.performSegue(withIdentifier: "videoListSegue", sender: self)
         } else if cat == "photos" {
+            controller.selectedGalleryIndex = 0
             controller.performSegue(withIdentifier: "presentationSegue", sender: self)
         }
     }

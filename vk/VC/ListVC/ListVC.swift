@@ -13,6 +13,7 @@ class ListVC: UIViewController {
     //MARK: - vars
     var user: User?
     var category: String?
+    var loadingView: LoadingView!
     var usersArray = [User]()
     var usersOnlineArray = [User]()
     var groupsArray = [Group]()
@@ -20,6 +21,7 @@ class ListVC: UIViewController {
     var filteredOnlineUser = [User]()
     var filteredGroups = [Group]()
     var isSearching = false
+    
     
 
     //MARK: - outlets
@@ -32,6 +34,7 @@ class ListVC: UIViewController {
     //MARK: - didLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        loading()
         self.navigationItem.title = category
         tableView.estimatedRowHeight = 120
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -147,6 +150,7 @@ extension ListVC {
                     self?.groupsArray.append(contentsOf: GroupsArray)
                     self?.configureSegment()
                     self?.tableView.reloadData()
+                    self?.loadingView.removeFromSuperview()
                 }
             })
             
@@ -172,6 +176,12 @@ extension ListVC {
     func configureSegment() {
         segmentController.setTitle("\(usersArray.count) friends", forSegmentAt: 0)
         segmentController.setTitle("\(usersOnlineArray.count) online", forSegmentAt: 1)
+    }
+    
+    func loading() {
+        self.tableView.register(UINib(nibName: "LoadingView", bundle: nil),forCellReuseIdentifier: "loading")
+        self.loadingView = LoadingView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        self.tableView.addSubview(loadingView)
     }
     
     @IBAction func changeValueOfSegment(_ sender: Any) {

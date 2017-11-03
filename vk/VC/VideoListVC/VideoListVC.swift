@@ -12,6 +12,7 @@ class VideoListVC: UIViewController {
     
     var user: User?
     var videoArray = [VideoModel]()
+    var loadingView: LoadingView!
     var filteredVideo = [VideoModel]()
     var isFiltered = false
     var selectedVideo: VideoModel?
@@ -21,6 +22,7 @@ class VideoListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loading()
         tableView.register(UINib(nibName: "VideoListCellVC", bundle: nil), forCellReuseIdentifier: "videoCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
@@ -31,6 +33,7 @@ class VideoListVC: UIViewController {
             DispatchQueue.main.async {
                 self?.videoArray.append(contentsOf: videosArray)
                 self?.tableView.reloadData()
+                self?.loadingView.removeFromSuperview()
             }
             
         }
@@ -97,5 +100,11 @@ extension VideoListVC {
         guard segue.identifier == "videoSegue", let dest = segue.destination as? VideoVC else { return }
         dest.user = user
         dest.video = selectedVideo
+    }
+    
+    func loading() {
+        self.tableView.register(UINib(nibName: "LoadingView", bundle: nil),forCellReuseIdentifier: "loading")
+        self.loadingView = LoadingView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        self.tableView.addSubview(loadingView)
     }
 }

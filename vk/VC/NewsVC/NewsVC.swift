@@ -14,6 +14,7 @@ class NewsVC: UIViewController {
     var newsArray = [PostInfo]()
     var currentTime: Int = Int(NSDate().timeIntervalSince1970)
     var start_from = 0
+    var loadingView: LoadingView!
     
     
 
@@ -29,6 +30,7 @@ extension NewsVC {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "postCell")
+        loading()
         sendRequest()
     }
 }
@@ -62,10 +64,19 @@ extension NewsVC {
                 DispatchQueue.main.async {
                     self.newsArray.append(contentsOf:objectsArray)
                     self.tableView.reloadData()
+                    self.loadingView.removeFromSuperview()
                 }
             })
         }) { (error) in
             print(error)
         }
+    }
+}
+
+extension NewsVC {
+    func loading() {
+        self.tableView.register(UINib(nibName: "LoadingView", bundle: nil),forCellReuseIdentifier: "loading")
+        self.loadingView = LoadingView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        self.tableView.addSubview(loadingView)
     }
 }
