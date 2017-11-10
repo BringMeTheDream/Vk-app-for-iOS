@@ -9,10 +9,10 @@
 import SwiftyJSON
 
 class PhotoProfileManager {
-    static func getProfilePhoto(user: User?, success: @escaping ()-> Void) {
+    static func getProfilePhoto(user: User?,offset: Int, success: @escaping ()-> Void) {
         guard let unwrappedUser = user else { return }
         guard let unwrappedId = unwrappedUser.user_id else { return }
-        _ = API_wrapper.getProfilePhoto(id: unwrappedId, success: { (response) in
+        _ = API_wrapper.getProfilePhoto(id: unwrappedId, offset: offset, success: { (response) in
             
             let jsonResponse = JSON(response)
             let arrayResponse = jsonResponse["response"]["items"].arrayValue
@@ -25,6 +25,7 @@ class PhotoProfileManager {
                 let width = item["width"].intValue
                 let height = item["height"].intValue
                 let size = CGSize(width: width, height: height)
+                
                 
                 let photo = PhotoModel(url: url, url_604: url_604, owner_id: id, date: date, size: size)
                 unwrappedUser.photos.append(photo)

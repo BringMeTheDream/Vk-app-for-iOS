@@ -53,7 +53,17 @@ extension PhotoCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         controller.selectedGalleryIndex = indexPath.row
         controller.performSegue(withIdentifier: "presentationSegue", sender: self)
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == controller.offset {
+            PhotoProfileManager.getProfilePhoto(user: self.user, offset: self.controller.offset, success: {
+                DispatchQueue.main.sync {
+                    self.controller.offset += 50
+                    self.photoCollectionView.reloadData()
+                }
+            })
+        }
     }
 }
 
@@ -80,9 +90,13 @@ extension PhotoCell: UICollectionViewDelegateFlowLayout {
 //MARK: - other function
 extension PhotoCell {
     func getRightWidth(height: Int, photo: CGSize) -> Double {
-        let k = Double(height) / Double(photo.height)
-        let width = Double(photo.width) * Double(k)
-        return width
+        if photo.width == 0 || photo.height == 0 {
+            return Double(height)
+        } else {
+            let k = Double(height) / Double(photo.height)
+            let width = Double(photo.width) * Double(k)
+            return width
+        }
     }
 }
     

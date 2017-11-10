@@ -21,6 +21,7 @@ class ListVC: UIViewController {
     var filteredOnlineUser = [User]()
     var filteredGroups = [Group]()
     var isSearching = false
+    var num = 3
     
     
 
@@ -28,6 +29,7 @@ class ListVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentController: UISegmentedControl!
+    @IBOutlet weak var segmentWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIView!
 
     
@@ -41,7 +43,6 @@ class ListVC: UIViewController {
         guard let unwrapUser = user else { return }
         guard let user_id = unwrapUser.user_id else { return }
         sendRequestUser(id: String(user_id))
-        
     }
 }
 
@@ -50,7 +51,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if category == "groups" {
-            bottomView.isHidden = true
+            segmentWidthConstraint.constant = 0
+            segmentController.isHidden = true
             if isSearching == false {
                 return groupsArray.count
             } else {
@@ -103,6 +105,8 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        self.num = indexPath.row
+        performSegue(withIdentifier: "profileSegue", sender: self)
     }
 }
 
@@ -114,7 +118,7 @@ extension ListVC: UISearchBarDelegate {
             return (model.getFullName().lowercased().range(of: searchBar.text!.lowercased()) != nil)
         })
         
-        filteredOnlineUser = usersArray.filter({
+        filteredOnlineUser = usersOnlineArray.filter({
             (model: User) -> Bool in
             return (model.getFullName().lowercased().range(of: searchBar.text!.lowercased()) != nil)
         })
@@ -151,6 +155,7 @@ extension ListVC {
                     self?.configureSegment()
                     self?.tableView.reloadData()
                     self?.loadingView.removeFromSuperview()
+                   
                 }
             })
             
@@ -188,4 +193,26 @@ extension ListVC {
         tableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "profileSegue", let dest = segue.destination as? UserViewController {
+            
+            if isSearching == false {
+                switch segmentController.selectedSegmentIndex {
+                    case 0: dest.user = usersArray[num]
+                    case 1: dest.user = usersOnlineArray[num]
+                default: return
+                }
+            } else {
+                switch segmentController.selectedSegmentIndex {
+                    case 0: dest.user = filteredUser[num]
+                    case 1: dest.user = filteredOnlineUser[num]
+                default: return
+                }
+            }
+            
+        }
+        
+    }
+
 }

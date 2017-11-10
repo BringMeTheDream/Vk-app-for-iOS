@@ -36,8 +36,7 @@ extension CounterCell {
 
 extension CounterCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let unwrappUser = user else { return 0 }
-        return unwrappUser.counters.count
+       return user?.openCounters.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -45,14 +44,15 @@ extension CounterCell: UICollectionViewDataSource, UICollectionViewDelegate {
         let numberLabel = cell.contentView.viewWithTag(11) as! UILabel
         let descriptionLabel = cell.contentView.viewWithTag(12) as! UILabel
         numberLabel.text = user?.counters[indexPath.row]
-        descriptionLabel.text = const.user_info.infoArray[indexPath.row]
+        descriptionLabel.text = user?.openCounters[indexPath.row]
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cat = const.user_info.infoArray[indexPath.row]
-        controller.category = cat
+        let cat = user?.openCounters[indexPath.row]
+        guard let category = cat else { return }
+        controller.category = category
         if cat == "friends" || cat == "followers" || cat == "groups" {
             controller.performSegue(withIdentifier: "listSegue", sender: self)
         } else if cat == "videos" {

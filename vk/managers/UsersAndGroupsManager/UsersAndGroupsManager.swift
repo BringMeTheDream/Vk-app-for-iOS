@@ -30,10 +30,12 @@ class UsersAndGroupsManager {
                 let screen_name = ""
                 let photo_url = user["photo_50"].stringValue
                 let online = user["online"].intValue
+                let id = user["id"].intValue
     
                 let user = User(first_name: first_name, last_name: last_name, screen_name: screen_name, sex: sex)
                 user.avatarImage = photo_url
                 user.online = online
+                user.user_id = id
                 usersArray.append(user)
             }
             

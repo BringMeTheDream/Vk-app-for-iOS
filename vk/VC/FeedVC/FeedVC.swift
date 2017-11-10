@@ -20,6 +20,7 @@ class FeedVC: UIViewController {
     var user: User?
     var category = ""
     var selectedGalleryIndex = 0
+    var offset = 0
 }
 
 
@@ -89,14 +90,15 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
 //MARK: - request to API and reload view
 extension FeedVC {
     func sendRequest() {
-        ProfileInfoManager.getAccountInfoManager(success: { (user) in
+        ProfileInfoManager.getAccountInfoManager(success: { [weak self] (user) in
             ProfileInfoManager.getUsersInfoManager(user: user, success: { (userWithInfo) in
-               PhotoProfileManager.getProfilePhoto(user: user, success: { () in
+                PhotoProfileManager.getProfilePhoto(user: user, offset: (self?.offset)!, success: { () in
                     DispatchQueue.main.async {
-                        self.user = userWithInfo
-                        self.navigationItem.title = user.first_name
-                        self.HeadTableView.reloadData()
-                        self.loadingView.removeFromSuperview()
+                        self?.user = userWithInfo
+                        self?.navigationItem.title = user.first_name
+                        self?.HeadTableView.reloadData()
+                        self?.loadingView.removeFromSuperview()
+                        self?.offset += 50
                     }
                 })
                
@@ -126,8 +128,9 @@ extension FeedVC {
             dest.user = user
             dest.category = category
         } else if segue.identifier == "presentationSegue", let dest = segue.destination as? PhotoGalleryVC {
-            dest.photosArray = (user?.photos)!
+            dest.user = self.user
             dest.selectedPhoto = self.selectedGalleryIndex
+            dest.photosCount = Int((user?.counters[3])!)!
         } else if segue.identifier == "videoListSegue", let dest = segue.destination as? VideoListVC {
             dest.user = user
         }

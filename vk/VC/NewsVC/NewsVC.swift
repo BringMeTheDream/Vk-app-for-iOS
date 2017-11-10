@@ -57,14 +57,14 @@ extension NewsVC: UITableViewDelegate, UITableViewDataSource {
 extension NewsVC {
     
     fileprivate func sendRequest() {
-        newsManager.getNewsForTape(end_time: currentTime, start_from: start_from, success: { (objectsArray) in
+        newsManager.getNewsForTape(end_time: currentTime, start_from: start_from, success: { [weak self] (objectsArray) in
             Helper.DivideUsersAndGroups(newsArray: objectsArray, success: {
                
-                self.start_from +=  const.requestData.countNews
+                self?.start_from +=  const.requestData.countNews
                 DispatchQueue.main.async {
-                    self.newsArray.append(contentsOf:objectsArray)
-                    self.tableView.reloadData()
-                    self.loadingView.removeFromSuperview()
+                    self?.newsArray.append(contentsOf:objectsArray)
+                    self?.tableView.reloadData()
+                    self?.loadingView.removeFromSuperview()
                 }
             })
         }) { (error) in

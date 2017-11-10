@@ -19,6 +19,10 @@ class User {
     var avatarImage: String?
     var user_id: Int?
     var online: Int?
+    var last_seen: Int?
+    var status: String?
+    var city: String?
+    var openCounters = [String]()
     var counters = [String]()
     var photos = [PhotoModel]()
     var videos = [VideoModel]()

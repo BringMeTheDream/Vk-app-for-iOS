@@ -15,6 +15,7 @@ class customImageViewProfile: UIImageView {
     }
     
     private func setStyle() {
+        layer.borderColor = UIColor.white.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 30
         layer.masksToBounds = true

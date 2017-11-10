@@ -9,6 +9,7 @@
 import Foundation
 
 class Helper {
+    //MARK: - decide user or groups was public news
     static func DivideUsersAndGroups(newsArray: [PostInfo], success: @escaping ()-> Void) {
         let countOfPosts = newsArray.count
         var i = 0
@@ -37,8 +38,25 @@ class Helper {
                     return
                 }
         }
-        
         getInfo()
- 
+    }
+    
+    //MARK: - get counters for identifier
+    static func getCountForIdentifier(user: User, identifier: String) -> Int {
+        var i = 0
+        var index = 0
+        
+        func compare() {
+            if user.openCounters[i] == identifier {
+                index = i
+            } else {
+                i += 1
+                compare()
+            }
+        }
+        
+        compare()
+        
+    return index
     }
 }

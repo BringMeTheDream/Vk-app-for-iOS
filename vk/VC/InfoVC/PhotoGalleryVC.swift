@@ -11,11 +11,12 @@ import Kingfisher
 
 class PhotoGalleryVC: UIViewController {
     
-    
-    var photosArray = [PhotoModel]()
+    var user: User?
     var selectedPhoto = 0
-  
-    
+    var photosCount = 0
+    var offset = 0
+    let userService = UserService()
+
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -33,26 +34,34 @@ class PhotoGalleryVC: UIViewController {
 
 extension PhotoGalleryVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photosArray.count
+        return user?.photos.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCell", for: indexPath)
         let galleryImage = cell.contentView.viewWithTag(1) as! UIImageView
-        galleryImage.kf.setImage(with: URL(string: photosArray[indexPath.row].url_604))
+        galleryImage.kf.setImage(with: URL(string: user?.photos[indexPath.row].url_604 ?? ""))
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        navigationItem.title = "\(indexPath.row + 1) из \(photosArray.count)"
+        navigationItem.title = "\(indexPath.row + 1) из \(user?.counters[Helper.getCountForIdentifier(user: self.user!, identifier: "photos")] ?? "0")"
+        
+        if indexPath.row == offset - 5 {
+            self.userService.getPhotos(user: self.user!, offset: self.offset, succcess: {
+                DispatchQueue.main.async {
+                    self.offset += 50
+                    self.collectionView.reloadData()
+                }
+            })
+        }
     }
-    
 }
 
 extension PhotoGalleryVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
-        let height = getRightHeight(model: photosArray[indexPath.row], frame: width)
+        let height = getRightHeight(model: (user?.photos[indexPath.row])!, frame: width)
         let size = CGSize(width: width, height: height)
         return size
     }

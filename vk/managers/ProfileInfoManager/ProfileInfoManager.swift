@@ -14,9 +14,6 @@ class ProfileInfoManager {
     static func getAccountInfoManager(success: @escaping (_ user: User)-> Void, failure: @escaping (_ errorDescription: String)-> Void) {
         _ = API_wrapper.getAccountInfo(success: { (response) in
             let profileInfo = JSON(response)
-           
-            
-            
             let first_name = profileInfo["response"]["first_name"].stringValue
             let last_name = profileInfo["response"]["last_name"].stringValue
             let sex = profileInfo["response"]["sex"].intValue
@@ -43,20 +40,19 @@ class ProfileInfoManager {
                 let user_id = info["id"].intValue
                 let phone_number = info["mobile_phone"].stringValue
                 let counters = info["counters"].dictionaryValue
-                var countArray = [String]()
-                print(user_id)
+
                 for discription in const.user_info.infoArray
                 {
-                    guard let element = counters[discription]?.stringValue else { return }
-                  countArray.append(element)
-                    
+                    let element = counters[discription]?.stringValue
+                    if element != nil && element != "0" {
+                        user.counters.append(element!)
+                        user.openCounters.append(discription)
+                    }
                 }
-                
                 
                 user.avatarImage = avatarImageUrl
                 user.user_id = user_id
                 user.phone_number = phone_number
-                user.counters.append(contentsOf: countArray)
                 
             }
             

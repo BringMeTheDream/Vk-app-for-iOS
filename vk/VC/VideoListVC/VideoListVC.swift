@@ -27,8 +27,8 @@ class VideoListVC: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         self.navigationItem.title = "videos"
-        
-        VideoListManager.getVideoListManager(user_id: 18297887) { [weak self] (videosArray) in
+        guard let unwrappedUser = self.user else { return }
+        VideoListManager.getVideoListManager(user_id: unwrappedUser.user_id ?? 0) { [weak self] (videosArray) in
             
             DispatchQueue.main.async {
                 self?.videoArray.append(contentsOf: videosArray)

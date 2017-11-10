@@ -24,7 +24,6 @@ class VideoVC: UIViewController {
         self.navigationItem.title = "Видеозапись"
        tableView.register(UINib(nibName: "VideoCellVC", bundle: nil), forCellReuseIdentifier: "videoCell")
     }
-
 }
 
 extension VideoVC: UITableViewDelegate, UITableViewDataSource {

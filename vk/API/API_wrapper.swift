@@ -208,16 +208,18 @@ extension API_wrapper {
 
 //MARK: - get Photo from profil
 extension API_wrapper {
-    static func getProfilePhoto(id: Int, success: @escaping (_ json: Any)-> Void)-> URLSessionTask {
+    static func getProfilePhoto(id: Int,offset: Int, success: @escaping (_ json: Any)-> Void)-> URLSessionTask {
         let url = const.requestData.url + "photos.getAll"
         let params: [String: Any] = [
-            "user_id": id,
+            "owner_id": id,
             "album_id": "wall",
+            "count": 50,
+            "offset" : offset,
             "rev": 0,
             "extended": 0,
             "photo_sizes": 0,
             "access_token": getToken(),
-            "v": 5.68
+            "v": 5.69
             ]
         
         let request = API_conf.getRequst(url: url, params: params)
@@ -227,6 +229,28 @@ extension API_wrapper {
         }
         dataTask.resume()
         return dataTask
+    }
+}
+
+extension API_wrapper {
+    static func getUserAccountInfo(id:Int, success: @escaping (_ json: Any)-> Void, failure: (_ error: String)-> Void)->URLSessionTask {
+        let url = const.requestData.url + "users.get"
+        let params: [String: Any] = [
+            "user_ids": id,
+            "fields": "photo_50%2C%20city%2C%20status%2C%20last_seen%2C%20has_mobile%2Csex%2Ccounters&params",
+            "name_case": "Nom",
+            "access_token": getToken(),
+            "v": 5.69
+        ]
+        
+        let request = API_conf.getRequst(url: url, params: params)
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: success)
+        }
+        dataTask.resume()
+        return dataTask
+    
     }
 }
 
