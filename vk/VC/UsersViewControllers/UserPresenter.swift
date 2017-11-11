@@ -71,6 +71,7 @@ extension UserPresenter {
         if indexPath == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "headCell") as! HeadCell
             cell.configure(user: self.user!)
+            cell.infoButton.addTarget(self, action: #selector(showInfo), for: .touchUpInside)
             return cell
         } else if indexPath == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "counterCellCollection") as! UserCounterCell
@@ -81,11 +82,16 @@ extension UserPresenter {
             cell.configure(user: self.user, view: self.controller)
             let countLabel = cell.contentView.viewWithTag(1) as! UILabel
             if user?.counters.count ?? 0 > 3 {
-                countLabel.text = "\(user?.counters[3] ?? "0") photos"
+                countLabel.text = "\(user?.counters[Helper.getCountForIdentifier(user: self.user!, identifier: "photos")] ?? "0") photos"
             }
-            
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+extension UserPresenter {
+    @objc func showInfo() {
+        controller.performSegue(withIdentifier: "usersInfoSegue", sender: self)
     }
 }

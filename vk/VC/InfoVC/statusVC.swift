@@ -11,6 +11,7 @@ import UIKit
 class statusVC: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class statusVC: UIViewController {
             return
         }
         _ = API_wrapper.setStatus(status: status)
+        self.user?.status = status
         self.navigationController?.popViewController(animated: true)
     }
 }

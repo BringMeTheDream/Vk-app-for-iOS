@@ -104,7 +104,7 @@ extension API_wrapper  {
         let url = const.requestData.url + "users.get"
         let params: [String: Any] = [
             "user_ids": user.screen_name,
-            "fields": "counters%2Cphoto_50%2Ccontacts",
+            "fields": "counters%2Cphoto_50%2Ccontacts%2Cstatus%2Cbdate",
             "access_token": getToken(),
             "v": 5.68
         ]

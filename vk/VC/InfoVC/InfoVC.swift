@@ -26,6 +26,11 @@ class InfoVC: UIViewController {
         setProperties(user: User)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.InfoTableView.reloadData()
+    }
+    
     @IBAction func showTextField(_ sender: Any) {
         performSegue(withIdentifier: "statusSegue", sender: self)
     }
@@ -51,6 +56,8 @@ extension InfoVC: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = InfoTableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath)
             let avatarImage = cell.contentView.viewWithTag(1) as! UIImageView
+            let statusLabel = cell.contentView.viewWithTag(3) as! UILabel
+            statusLabel.text = user?.status
             avatarImage.kf.setImage(with: URL(string: user?.avatarImage ?? ""))
             return cell
         } else if indexPath.section == 1 {
@@ -89,23 +96,26 @@ extension InfoVC: UITableViewDelegate, UITableViewDataSource {
 
 extension InfoVC {
     func setProperties(user: User) {
+        var array = [String]()
+        array.append(user.getFullName())
+        array.append(user.city ?? "")
+        array.append(user.phone_number ?? "")
+        array.append(user.getSex())
+        array.append(user.screen_name)
+        array.append(user.bdate ?? "")
         
-        let name = user.getFullName()
-        let sex = getSex(sex: user.sex)
-        let phone_number = user.phone_number ?? ""
-        
-        propertiesArray.append(name)
-        propertiesArray.append(sex)
-        propertiesArray.append(phone_number)
-        
-    }
-    
-    func getSex(sex: Int) -> String {
-        
-        if sex == 2 {
-            return "Мужской"
-        } else {
-            return "Женский"
+        for properties in array {
+            if properties != "" {
+                self.propertiesArray.append(properties)
+            }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard segue.identifier == "statusSegue", let dest = segue.destination as? statusVC else { return }
+        dest.user = user
+    }
+    
 }

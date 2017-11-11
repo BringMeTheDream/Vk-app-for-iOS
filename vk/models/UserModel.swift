@@ -18,6 +18,7 @@ class User {
     var phone_number: String?
     var avatarImage: String?
     var user_id: Int?
+    var bdate: String?
     var online: Int?
     var last_seen: Int?
     var status: String?
@@ -36,5 +37,13 @@ class User {
     
     func getFullName()-> String {
         return first_name + " " + last_name
+    }
+    
+    func getSex()-> String {
+        if self.sex == 2 {
+            return "Мужской"
+        } else {
+            return "Женский"
+        }
     }
 }

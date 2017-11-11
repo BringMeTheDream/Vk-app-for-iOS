@@ -33,9 +33,11 @@ class ProfileInfoManager {
         _ = API_wrapper.getUserProfileInfo(user: user, success: { (response) in
             let userInfo = JSON(response)
             let infoArray = userInfo["response"].arrayValue
-            
 
             for info in infoArray {
+                user.status = info["status"].stringValue
+                user.bdate = info["bdate"].stringValue
+                
                 let avatarImageUrl = info["photo_50"].stringValue
                 let user_id = info["id"].intValue
                 let phone_number = info["mobile_phone"].stringValue

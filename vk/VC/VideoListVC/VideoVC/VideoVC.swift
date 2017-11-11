@@ -13,8 +13,6 @@ class VideoVC: UIViewController {
     var user: User?
     var video: VideoModel?
     
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {

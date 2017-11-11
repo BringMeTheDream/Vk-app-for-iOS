@@ -31,8 +31,6 @@ class UserPhotoCell: UITableViewCell {
         cvHeightConstraint.constant = 75
         collectionView.reloadData()
     }
-
-
 }
 
 extension UserPhotoCell: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -63,9 +61,6 @@ extension UserPhotoCell: UICollectionViewDelegate, UICollectionViewDataSource {
             })
         }
     }
-
-    
-    
 }
 
 extension UserPhotoCell: UICollectionViewDelegateFlowLayout {

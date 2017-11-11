@@ -66,6 +66,8 @@ extension UserViewController {
             dest.user = self.user
         } else if segue.identifier == "userVideoSegue", let dest = segue.destination as? VideoListVC {
             dest.user = user
+        } else if segue.identifier == "usersInfoSegue", let dest = segue.destination as? UsersInfoVC {
+            dest.user = self.user
         }
     }
 }

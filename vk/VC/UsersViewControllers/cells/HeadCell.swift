@@ -15,6 +15,7 @@ class HeadCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var last_seenLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var infoButton: UIButton!
     
     let now = Int(NSDate().timeIntervalSince1970)
     
@@ -52,3 +53,5 @@ extension HeadCell {
         return result
     }
 }
+
+
