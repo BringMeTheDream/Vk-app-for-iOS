@@ -106,7 +106,9 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.num = indexPath.row
-        performSegue(withIdentifier: "profileSegue", sender: self)
+        if self.category == "friends" || self.category == "followers" {
+            performSegue(withIdentifier: "profileSegue", sender: self)
+        }
     }
 }
 

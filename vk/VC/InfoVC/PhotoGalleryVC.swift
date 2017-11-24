@@ -41,6 +41,13 @@ extension PhotoGalleryVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCell", for: indexPath)
         let galleryImage = cell.contentView.viewWithTag(1) as! UIImageView
         galleryImage.kf.setImage(with: URL(string: user?.photos[indexPath.row].url_604 ?? ""))
+        galleryImage.constraints.forEach { (constraint) in
+            switch constraint.identifier ?? "" {
+            case "width": constraint.constant = UIScreen.main.bounds.width
+            case "height": constraint.constant = getRightHeight(model: (user?.photos[indexPath.row])!, frame: CGFloat(UIScreen.main.bounds.width))
+            default: break
+            }
+        }
         return cell
     }
     
@@ -61,7 +68,7 @@ extension PhotoGalleryVC: UICollectionViewDelegate, UICollectionViewDataSource {
 extension PhotoGalleryVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
-        let height = getRightHeight(model: (user?.photos[indexPath.row])!, frame: width)
+        let height = UIScreen.main.bounds.height
         let size = CGSize(width: width, height: height)
         return size
     }
@@ -73,6 +80,11 @@ extension PhotoGalleryVC: UICollectionViewDelegateFlowLayout {
 
 extension PhotoGalleryVC {
     func getRightHeight(model: PhotoModel, frame: CGFloat)-> CGFloat {
-        return frame / ((model.size.width) / (model.size.height))
+        if model.size.width != 0 && model.size.height != 0 {
+            return frame / ((model.size.width) / (model.size.height))
+        } else {
+            return 450
+        }
+        
     }
 }

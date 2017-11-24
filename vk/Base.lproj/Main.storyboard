@@ -375,15 +375,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2F7-c5-ias">
-                                                    <rect key="frame" x="8" y="8" width="51" height="54"/>
+                                                    <rect key="frame" x="-1.5" y="0.0" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" identifier="width" id="LKM-N2-rYb"/>
+                                                        <constraint firstAttribute="height" constant="70" identifier="height" id="qtS-oN-wPZ"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="2F7-c5-ias" firstAttribute="leading" secondItem="sTr-AQ-aRO" secondAttribute="leadingMargin" id="4X7-b6-PS4"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="2F7-c5-ias" secondAttribute="trailing" id="8m4-ec-WgB"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="2F7-c5-ias" secondAttribute="bottom" id="mdE-Cx-P8T"/>
-                                            <constraint firstItem="2F7-c5-ias" firstAttribute="top" secondItem="sTr-AQ-aRO" secondAttribute="topMargin" id="nMq-6D-4YG"/>
+                                            <constraint firstItem="2F7-c5-ias" firstAttribute="centerX" secondItem="sTr-AQ-aRO" secondAttribute="centerX" id="akv-UG-T1L"/>
+                                            <constraint firstItem="2F7-c5-ias" firstAttribute="centerY" secondItem="sTr-AQ-aRO" secondAttribute="centerY" id="voC-QN-H9y"/>
                                         </constraints>
                                     </collectionViewCell>
                                 </cells>

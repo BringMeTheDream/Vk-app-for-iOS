@@ -13,7 +13,7 @@ class CounterCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     var user: User?
     var category: String = ""
-    var controller: FeedVC!
+    weak var controller: FeedVC!
 }
 
 extension CounterCell {
