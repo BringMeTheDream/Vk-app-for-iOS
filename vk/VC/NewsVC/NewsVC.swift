@@ -31,7 +31,8 @@ extension NewsVC {
         tableView.estimatedRowHeight = 120
         tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "postCell")
         loading()
-        sendRequest()
+        //sendRequest()
+        sendRequest1()
     }
 }
 
@@ -49,22 +50,37 @@ extension NewsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == newsArray.count - 2 {
-            sendRequest()
+            sendRequest1()
         }
     }
 }
 
 extension NewsVC {
+    // replaced on operation
+//    fileprivate func sendRequest() {
+//        newsManager.getNewsForTape(end_time: currentTime, start_from: start_from, success: { [weak self] (objectsArray) in
+//            Helper.DivideUsersAndGroups(newsArray: objectsArray, success: {
+//
+//                self?.start_from +=  const.requestData.countNews
+//                DispatchQueue.main.async {
+//                    self?.newsArray.append(contentsOf:objectsArray)
+//                    self?.tableView.reloadData()
+//                    self?.loadingView.removeFromSuperview()
+//                }
+//            })
+//        }) { (error) in
+//            print(error)
+//        }
+//    }
     
-    fileprivate func sendRequest() {
-        newsManager.getNewsForTape(end_time: currentTime, start_from: start_from, success: { [weak self] (objectsArray) in
-            Helper.DivideUsersAndGroups(newsArray: objectsArray, success: {
-               
-                self?.start_from +=  const.requestData.countNews
+    fileprivate func sendRequest1() {
+        DataProvider.getNews(end_time: currentTime, start_from: start_from, success: { (objectArray) in
+            Helper.DivideUsersAndGroups(newsArray: objectArray, success: {
+                self.start_from +=  const.requestData.countNews
                 DispatchQueue.main.async {
-                    self?.newsArray.append(contentsOf:objectsArray)
-                    self?.tableView.reloadData()
-                    self?.loadingView.removeFromSuperview()
+                    self.newsArray.append(contentsOf:objectArray)
+                    self.tableView.reloadData()
+                    self.loadingView.removeFromSuperview()
                 }
             })
         }) { (error) in

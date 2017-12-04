@@ -68,6 +68,9 @@
 		9AF08A301F99131E00965F92 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF08A2F1F99131E00965F92 /* PhotoCell.swift */; };
 		9AF08A331F99336300965F92 /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF08A321F99336300965F92 /* ListVC.swift */; };
 		9AF08A351F9957D600965F92 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF08A341F9957D600965F92 /* GroupModel.swift */; };
+		9AF5746E1FCC6A6F00113901 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5746D1FCC6A6F00113901 /* DataProvider.swift */; };
+		9AF574701FCC6E9200113901 /* NewsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5746F1FCC6E9200113901 /* NewsOperation.swift */; };
+		9AF574721FCD751F00113901 /* OperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF574711FCD751F00113901 /* OperationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +137,9 @@
 		9AF08A2F1F99131E00965F92 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		9AF08A321F99336300965F92 /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
 		9AF08A341F9957D600965F92 /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
+		9AF5746D1FCC6A6F00113901 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		9AF5746F1FCC6E9200113901 /* NewsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsOperation.swift; sourceTree = "<group>"; };
+		9AF574711FCD751F00113901 /* OperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationManager.swift; sourceTree = "<group>"; };
 		EBE7A39867EF09C70D8133A9 /* Pods_vk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F984FD9903B6799AAD59410E /* Pods-vk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.release.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -259,6 +265,7 @@
 				9A9DE3461F8D196000789289 /* models */,
 				9A9DE33D1F8BD0A700789289 /* API */,
 				9A9DE31A1F8A330200789289 /* const */,
+				9AF5746C1FCC6A1B00113901 /* Operations */,
 				9A9DE3121F8A234500789289 /* managers */,
 				9A3A29131F8A1BAA000856F0 /* images */,
 				9A9DE30F1F8A229F00789289 /* VC */,
@@ -461,6 +468,16 @@
 			path = ListVC;
 			sourceTree = "<group>";
 		};
+		9AF5746C1FCC6A1B00113901 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				9AF5746D1FCC6A6F00113901 /* DataProvider.swift */,
+				9AF5746F1FCC6E9200113901 /* NewsOperation.swift */,
+				9AF574711FCD751F00113901 /* OperationManager.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -612,6 +629,7 @@
 				9AC850431FAC8E5300F3513B /* UserViewController.swift in Sources */,
 				9A47C7C81F98B2D800DD663D /* CounterCell.swift in Sources */,
 				9A23ABD71FB3359F00CA6B4C /* UserPhotoCell.swift in Sources */,
+				9AF574701FCC6E9200113901 /* NewsOperation.swift in Sources */,
 				9A09568F1F935DC400E448A6 /* statusVC.swift in Sources */,
 				9A0BE7B51F9F144D009B33A5 /* PhotoGalleryVC.swift in Sources */,
 				9AD1E3571F901D50001FBE6A /* HeaderCell.swift in Sources */,
@@ -634,6 +652,7 @@
 				9A23ABDA1FB5FAD400CA6B4C /* UsersInfoVC.swift in Sources */,
 				9AC850451FAC8E8600F3513B /* UserPresenter.swift in Sources */,
 				9A9DE3171F8A2D1C00789289 /* AuthorizationDelegate.swift in Sources */,
+				9AF574721FCD751F00113901 /* OperationManager.swift in Sources */,
 				9A3A29011F8A1B85000856F0 /* AppDelegate.swift in Sources */,
 				9A9DE3411F8BD6A100789289 /* API_wrapper.swift in Sources */,
 				9A0BE7B11F9DF410009B33A5 /* PhotoProfileManager.swift in Sources */,
@@ -646,6 +665,7 @@
 				9A17DCA71FB1B53400482AC4 /* UserService.swift in Sources */,
 				9A9DE3451F8D181400789289 /* newsManager.swift in Sources */,
 				9A0BE7B31F9DFA54009B33A5 /* PhotoModel.swift in Sources */,
+				9AF5746E1FCC6A6F00113901 /* DataProvider.swift in Sources */,
 				9A23ABD01FB2081F00CA6B4C /* HeadCell.swift in Sources */,
 				9A0BE7A91F995FF3009B33A5 /* UsersAndGroupsManager.swift in Sources */,
 				9ACBDFC31FAC789500908A30 /* LoadingView.swift in Sources */,
@@ -789,8 +809,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VD95CYC5K3;
 				INFOPLIST_FILE = "$(SRCROOT)/vk/other/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = beetlab.vk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -805,8 +826,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VD95CYC5K3;
 				INFOPLIST_FILE = "$(SRCROOT)/vk/other/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = beetlab.vk;
 				PRODUCT_NAME = "$(TARGET_NAME)";

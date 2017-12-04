@@ -9,46 +9,46 @@
 import SwiftyJSON
 
 class newsManager {
-    static func getNewsForTape(end_time: Int, start_from: Int ,success: @escaping (_ newsInfo: [PostInfo])->Void, failure: @escaping (_ errorDescription: String)->Void) {
-
-        _ = API_wrapper.getNewsForTape(end_time: end_time , start_from: start_from , success: { (response) in
-            var newsArray = [PostInfo]()
-            let jsonResponse = JSON(response)
-            let arrayOfItems = jsonResponse["response"]["items"].arrayValue
-            
-            
-            for item in arrayOfItems {
-                let type = item["type"].stringValue
-                let like = item["likes"]["count"].intValue
-                let reposts = item["reposts"]["count"].intValue
-                let dateUpload = item["date"].intValue
-                let text = item["text"].stringValue
-                let owner_id = item["source_id"].intValue
-                let attachments = item["attachments"].arrayValue
-                
-                let news = PostInfo(type: type, likeCount: like, repostsCount: reposts, dateUpload: dateUpload, owner_id: owner_id, text: text)
-                
-                
-                for attachmentItem in attachments {
-                    let type = attachmentItem["type"].stringValue
-                    let photo_url = attachmentItem["photo"]["photo_604"].stringValue
-                    let width = attachmentItem["photo"]["width"].intValue
-                    let height = attachmentItem["photo"]["height"].intValue
-                    
-                    let attachement = PostAttachments(type: type, source_url: photo_url)
-                    attachement.size = CGSize(width: width, height: height)
-                    news.attachements = attachement
-                }
-                
-                newsArray.append(news)
-            }
-            
-           
-            success(newsArray)
-        }, failure: { (error) in
-            failure(error)
-        })
-    }
+//    static func getNewsForTape(end_time: Int, start_from: Int ,success: @escaping (_ newsInfo: [PostInfo])->Void, failure: @escaping (_ errorDescription: String)->Void) {
+//
+//        _ = API_wrapper.getNewsForTape(end_time: end_time , start_from: start_from , success: { (response) in
+//            var newsArray = [PostInfo]()
+//            let jsonResponse = JSON(response)
+//            let arrayOfItems = jsonResponse["response"]["items"].arrayValue
+//            
+//            
+//            for item in arrayOfItems {
+//                let type = item["type"].stringValue
+//                let like = item["likes"]["count"].intValue
+//                let reposts = item["reposts"]["count"].intValue
+//                let dateUpload = item["date"].intValue
+//                let text = item["text"].stringValue
+//                let owner_id = item["source_id"].intValue
+//                let attachments = item["attachments"].arrayValue
+//                
+//                let news = PostInfo(type: type, likeCount: like, repostsCount: reposts, dateUpload: dateUpload, owner_id: owner_id, text: text)
+//                
+//                
+//                for attachmentItem in attachments {
+//                    let type = attachmentItem["type"].stringValue
+//                    let photo_url = attachmentItem["photo"]["photo_604"].stringValue
+//                    let width = attachmentItem["photo"]["width"].intValue
+//                    let height = attachmentItem["photo"]["height"].intValue
+//                    
+//                    let attachement = PostAttachments(type: type, source_url: photo_url)
+//                    attachement.size = CGSize(width: width, height: height)
+//                    news.attachements = attachement
+//                }
+//                
+//                newsArray.append(news)
+//            }
+//            
+//           
+//            success(newsArray)
+//        }, failure: { (error) in
+//            failure(error)
+//        })
+//    }
 }
 
 extension newsManager {
@@ -64,7 +64,6 @@ extension newsManager {
             let name = "\(first_name) \(last_name)"
             postObject.author_photo_url = authorInfo["response"]["photo_50"].stringValue
             postObject.author_name = name
-            print(" имя \(name)")
             
             success()
             

@@ -16,7 +16,7 @@ class API_conf {
             url += "\(key)" + "=" + "\(value)" + "&"
         }
         
-        url = String(url.characters.dropLast())
+        url = String(url.dropLast())
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"

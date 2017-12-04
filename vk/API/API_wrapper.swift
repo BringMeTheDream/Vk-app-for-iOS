@@ -141,7 +141,7 @@ extension API_wrapper {
 extension API_wrapper {
     //users
     static func getFriendsList(id: String, method: String, success: @escaping (_ json: Any)-> Void, failure: @escaping (_ errorDescription: String)-> Void)-> URLSessionTask {
-
+        
         let url = const.requestData.url + method
         let params: [String: Any] = [
             "user_id": id,
@@ -242,7 +242,7 @@ extension API_wrapper {
             "access_token": getToken(),
             "v": 5.69
         ]
-        
+        print(getToken())
         let request = API_conf.getRequst(url: url, params: params)
         
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
